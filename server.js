@@ -40,7 +40,7 @@ app.post('/voice', (req, res) => {
 
 app.use(express.static('public'))
 
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
