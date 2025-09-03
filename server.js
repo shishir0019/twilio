@@ -1,3 +1,4 @@
+let path = require('path');
 const express = require('express');
 const cors = require('cors');
 const { jwt: { AccessToken } } = require('twilio');
@@ -6,6 +7,13 @@ require('dotenv').config();
 
 const app = express();
 app.use(cors());
+
+// app.use('/static', express.static('public'))
+app.use('/',express.static(path.join(__dirname, 'dist')));
+
+app.get('/', (req, res) => {
+  res.sendFile('index.html', { root: 'dist' });
+});
 
 app.get('/token', (req, res) => {
   const identity = req.query.identity || 'user';
@@ -36,12 +44,6 @@ app.post('/voice', (req, res) => {
 
   res.type('text/xml');
   res.send(twiml.toString());
-});
-
-app.use(express.static('public'))
-
-app.get('/test', (req, res) => {
-  res.sendFile('index.html', { root: 'public' });
 });
 
 const port = 5000;
