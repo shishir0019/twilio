@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
-const port = 3000;
+const port = 5000;
 app.listen(port, () => {
   console.log(`Token server running on http://localhost:${port}`);
 });
